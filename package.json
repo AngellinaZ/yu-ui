@@ -13,8 +13,12 @@
     "components"
   ],
   "devDependencies": {
+    "vue-router": "^3.0.7",
     "webpack-dev-server": "^3.7.2",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "vue": "^2.6.10"
+  }
 }

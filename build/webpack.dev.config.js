@@ -1,11 +1,10 @@
 const path = require('path')
-const webpack = require('webpack')
+const merge = require('webpack-merge')
 const htmlWebpackPlugin = require('html-webpack-plugin')
-
-// const merge = require('webpack-merge')
+const commonConfig = require('./webpack.common.config')
 const config = require('../config')
 
-module.exports = {
+const configuration = merge(commonConfig, {
     // 模式 development / production, 告知 webpack 使用相应模式的内置优化
     mode: 'development',
 
@@ -55,4 +54,6 @@ module.exports = {
             poll: config.dev.poll // 轮询
         }
     }
-}
+})
+
+module.exports = configuration

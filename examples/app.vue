@@ -1,10 +1,8 @@
 <template>
-    <div id="app">
-        WELCOME YU UI
-    </div>
+  <router-view></router-view>
 </template>
 <script>
 export default {
-    name: 'App'
+  name: 'App'
 }
 </script>

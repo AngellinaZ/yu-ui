@@ -16,8 +16,6 @@ requireRouter.keys().forEach(fileName => {
     routes.push(route)
 })
 
-console.log(routes)
-
 export default new VueRouter({
     routes
 })

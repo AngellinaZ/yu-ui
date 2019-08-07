@@ -25,13 +25,13 @@ module.exports = {
         test: /\.js?$/,
         loader: 'babel-loader',
         //排除node_modules
-        exclude: file => (  
-          /node_modules/.test(file) && !/\.vue\.js/.test(file) 
+        exclude: file => (
+          /node_modules/.test(file) && !/\.vue\.js/.test(file)
         )
       },
       // 它会应用到普通的 `.css` 文件, 以及 `.vue` 文件中的 `<style>` 块
       {
-        test: '/\.scss$/',
+        test: /\.scss$/,
         use: [
           'vue-style-loader',
           'css-loader',
@@ -43,7 +43,25 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.otf|ttf|woff2?|eot(\?\S*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000
+        }
+      },
+      {
+        test: /\.svg(\?\S*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+        }
+      },
+      {
+        test: /\.(gif|png|jpe?g)(\?\S*)?$/,
+        loader: 'url-loader',
+      },
     ]
   },
 }

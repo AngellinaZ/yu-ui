@@ -10,11 +10,10 @@ const configuration = merge(commonConfig, {
 
     devtool: 'inline-source-map', // 控制是否生成，以及如何生成 source map
 
-    // 入口
+    // 入口，默认根路径
     entry: {
-        main: path.resolve(__dirname, '../examples/main.js'),
-        // app: '../examples/main', // 应用程序
-        // vendors: ['vue', 'vue-router'] // 第三方库
+        app: './examples/main', // 应用程序
+        vendors: ['vue', 'vue-router'] // 第三方库
     },
 
     // 输出

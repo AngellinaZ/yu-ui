@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const config = require('../config')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const resolve = (dir) => path.resolve(__dirname, '..', dir)
+const resolve = (dir) => path.resolve(__dirname, '..', dir) //__dirname: 获取当前模块文件所在目录的完整绝对路径
 
 module.exports = {
   resolve: {
@@ -20,8 +20,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
-      // 它会应用到普通的 `.js` 文件
-      // 以及 `.vue` 文件中的 `<script>` 块
+      // 它会应用到普通的 `.js` 文件 , 以及 `.vue` 文件中的 `<script>` 块
       {
         test: /\.js?$/,
         loader: 'babel-loader',
@@ -30,15 +29,7 @@ module.exports = {
           /node_modules/.test(file) && !/\.vue\.js/.test(file) 
         )
       },
-      // // 它会应用到普通的 `.css` 文件
-      // // 以及 `.vue` 文件中的 `<style>` 块
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     'vue-style-loader',
-      //     'css-loader'
-      //   ]
-      // },
+      // 它会应用到普通的 `.css` 文件, 以及 `.vue` 文件中的 `<style>` 块
       {
         test: '/\.scss$/',
         use: [

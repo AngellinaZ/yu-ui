@@ -1,6 +1,6 @@
 <template>
   <div>
-    <test v-on:titleChanged="title11"></test>
+    <test @titleChanged="title11"></test>
     <h2>{{title}}</h2>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       users: ["Henry", "Bucky", "Emily"],
-      title: 'xxxx'
+      title: '这里是父组件!'
     }
   },
   components: {
@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     title11 (e) {
+      console.log(e)
       this.title = e;
     }
   }

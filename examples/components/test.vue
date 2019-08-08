@@ -6,7 +6,7 @@ export default {
   name: 'test',
   data () {
     return {
-      title: 'this is a vue demo'
+      title: '这里是子组件'
     }
   },
   methods: {

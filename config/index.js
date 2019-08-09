@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
     dev: {
-        env: require('./dev.env'),
+        // env: require('./dev.env'),
         cacheBusting: false,
         cssSourceMap: false,
         useEslint: true,
@@ -17,7 +17,7 @@ module.exports = {
         poll: false
     },
     build: {
-        env: require('./prod.env'),
+        // env: require('./prod.env'),
         productionSourceMap: false,
         assetsSubDirectory: 'static',
         assetsRoot: path.resolve(__dirname, '../lib'),

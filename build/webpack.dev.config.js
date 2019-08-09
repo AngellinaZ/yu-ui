@@ -4,7 +4,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 const commonConfig = require('./webpack.common.config')
 const config = require('../config')
 
-const configuration = merge(commonConfig, {
+const devWebpackConfig = merge(commonConfig, {
     // 模式 development / production, 告知 webpack 使用相应模式的内置优化
     mode: 'development',
 
@@ -24,7 +24,9 @@ const configuration = merge(commonConfig, {
         chunkFilename: '[name].chunk.js' // 决定了非入口（non-entry）chunk文件的名称
     },
 
+    //plugins
     plugins: [
+        new webpack.HotModuleReplacementPlugin(), //热替换模块，永远不要在生产环境(production)下启用 HMR
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, '../examples/index.html'),
@@ -34,8 +36,8 @@ const configuration = merge(commonConfig, {
 
     //服务器配置
     devServer: {
-        host: config.dev.host,
-        port: config.dev.port,
+        host: config.dev.host, // host
+        port: config.dev.port, // 端口
         compress: true, // 一切服务都启用 gzip 压缩
         open: true, // 自动打开浏览器
         hot: true, // 启用模块热替换特性
@@ -55,4 +57,29 @@ const configuration = merge(commonConfig, {
     }
 })
 
-module.exports = configuration
+module.exports = new Promise((resolve, reject) => {
+    portfinder.basePort = process.env.PORT || config.dev.port
+    portfinder.getPort((err, port) => {
+      if (err) {
+        reject(err)
+      } else {
+        // publish the new Port, necessary for e2e tests
+        process.env.PORT = port
+        // add port to devServer config
+        devWebpackConfig.devServer.port = port
+  
+        // Add FriendlyErrorsPlugin
+        devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
+          compilationSuccessInfo: {
+            messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          },
+          onErrors: config.dev.notifyOnErrors
+          ? utils.createNotifierCallback()
+          : undefined
+        }))
+  
+        resolve(devWebpackConfig)
+      }
+    })
+  })
+  

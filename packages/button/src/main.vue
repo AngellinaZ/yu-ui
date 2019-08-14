@@ -1,4 +1,4 @@
-    <template>
+<template>
   <button
     :class="['owl-button', typeClass]"
     :style="btnStyle"

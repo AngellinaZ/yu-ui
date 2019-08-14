@@ -11,7 +11,6 @@ requireComponent.keys().forEach(path => {
     components[key] = componentConfig.default || componentConfig
 });
 
-console.log(components)
 
 // 一个公开方法 install, 第一个参数 Vue 构造器，第二个参数一个可选的选项对象
 const install = function (Vue, opts = {}) {

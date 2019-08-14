@@ -3,7 +3,6 @@ const path = require('path')
 const config = require('../config')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const resolve = (dir) => path.resolve(__dirname, '..', dir) //__dirname: 获取当前模块文件所在目录的完整绝对路径
-console.log(__dirname)
 
 module.exports = {
   resolve: {
